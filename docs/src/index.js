@@ -1,8 +1,8 @@
 import React from 'react';
-import ReactDOM from 'react-dom'
-import Zarousel from '../../src/zarousel';
-import '../../src/zarousel';
-import './index';
+import ReactDOM from 'react-dom';
+import Zarousel from '../../src/zarousel.js';
+import '../../src/zarousel.css';
+import './index.css';
 
 class App extends React.Component {
   constructor(props) {
@@ -12,15 +12,14 @@ class App extends React.Component {
 
   render() {
     return (
-      <div>
-        heiheihei
-        <Zarousel />
-      </div>
+      <Zarousel className="container">
+        <div className="slide">1</div>
+        <div className="slide">2</div>
+        <div className="slide">3</div>
+        <div className="slide">4</div>
+      </Zarousel>
     );
   }
 }
 
-ReactDOM.render(
-  <App />,
-  document.getElementById('app')
-);
+ReactDOM.render(<App />, document.getElementById('app'));

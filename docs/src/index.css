@@ -1,0 +1,10 @@
+.zarousel-container {
+  border: 1px solid #e00;
+  width: 400px;
+  height: 200px;
+}
+
+.slide {
+  font-size: 20px;
+  text-align: center;
+}

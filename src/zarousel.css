@@ -1,0 +1,20 @@
+.zarousel-container {
+  overflow: hidden;
+  position: relative;
+}
+.zarousel-list {
+  border: 1px solid #0e0;
+  height: 100%;
+}
+
+.zarousel-list:after {
+  content: '';
+  display: block;
+  clear: both;
+}
+
+.zarousel-dot {
+  border: 1px solid #e00;
+  width: 50px;
+  height: 20px;
+}
