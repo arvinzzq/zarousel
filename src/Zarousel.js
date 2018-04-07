@@ -36,8 +36,8 @@ export default class Zarousel extends (PureComponent || Component) {
   init() {
     const { autoPlay } = this.props;
     const childrenList = this.zarouselList.children;
-    this.getZarouselContainerWidth();
     const len = childrenList.length;
+    this.getZarouselContainerWidth();
     this.setZarouselListWidth(len);
     for(let i = 0; i < len; i++) {
       setStyle(childrenList[i], {
@@ -47,9 +47,7 @@ export default class Zarousel extends (PureComponent || Component) {
     setStyle(this.zarouselList, {
       marginLeft: `-${this.zarouselContainerWidth}px`
     });
-
     autoPlay && this.startAutoPlay();
-
   }
 
   startAutoPlay = () => {
