@@ -13,6 +13,7 @@ function setStyle(target, styles) {
 export default class Zarousel extends (PureComponent || Component) {
   static propTypes = {
     autoPlay: PropTypes.bool,
+    autoPlayInterval: PropTypes.number,
     colorDot: PropTypes.string,
     transitionDuration: PropTypes.number
   };
@@ -20,7 +21,8 @@ export default class Zarousel extends (PureComponent || Component) {
   static defaultProps = {
     autoPlay: false,
     colorDot: '#333',
-    transitionDuration: 300
+    transitionDuration: 300,
+    autoPlayInterval: 3000
   };
 
   state = {
@@ -32,6 +34,7 @@ export default class Zarousel extends (PureComponent || Component) {
   }
 
   init() {
+    const { autoPlay } = this.props;
     const childrenList = this.zarouselList.children;
     this.getZarouselContainerWidth();
     const len = childrenList.length;
@@ -44,13 +47,35 @@ export default class Zarousel extends (PureComponent || Component) {
     setStyle(this.zarouselList, {
       marginLeft: `-${this.zarouselContainerWidth}px`
     });
+
+    autoPlay && this.startAutoPlay();
+
   }
+
+  startAutoPlay = () => {
+    const { autoPlayInterval } = this.props;
+    this.autoPlayTimer = setInterval(this.goNext, autoPlayInterval);
+  };
+
+  clearAutoPlay = () => {
+    clearInterval(this.autoPlayTimer);
+  };
 
   handleDotClick = (index) => () => {
     this.setState({
       indexActive: index
     });
     this.swipeTo(index);
+  };
+
+  handleMouseEnter = () => {
+    const { autoPlay } = this.props;
+    autoPlay && this.clearAutoPlay();
+  };
+
+  handleMouseLeave = () => {
+    const { autoPlay } = this.props;
+    autoPlay && this.startAutoPlay();
   };
 
   calcRealIndex = (index) => {
@@ -177,6 +202,8 @@ export default class Zarousel extends (PureComponent || Component) {
       <div
         ref={this.getZarouselContainer}
         className={cx('zarousel-container', className)}
+        onMouseEnter={this.handleMouseEnter}
+        onMouseLeave={this.handleMouseLeave}
       >
         <div
           ref={this.getZarouselList}

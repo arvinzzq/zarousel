@@ -12,7 +12,10 @@ class App extends React.Component {
 
   render() {
     return (
-      <Zarousel className="container">
+      <Zarousel
+        className="container"
+        autoPlay={true}
+      >
         <div className="slide">1</div>
         <div className="slide">2</div>
         <div className="slide">3</div>
