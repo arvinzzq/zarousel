@@ -1,9 +1,10 @@
 .zarousel-container {
-  overflow: hidden;
+  /*overflow: hidden;*/
   position: relative;
 }
 .zarousel-list {
   height: 100%;
+  border: 1px solid #0e0;
 }
 
 .zarousel-list:after {
@@ -33,4 +34,24 @@
 
 .zarousel-dot:first-child {
   margin-left: 0px;
+}
+
+.arrow--next {
+  display: inline-block;
+  position: absolute;
+  bottom: 30px;
+  right: 0px;
+  width: 30px;
+  height: 20px;
+  border: 1px solid #0e0;
+}
+
+.arrow--prev {
+  display: inline-block;
+  position: absolute;
+  bottom: 30px;
+  left: 0px;
+  width: 30px;
+  height: 20px;
+  border: 1px solid #0e0;
 }

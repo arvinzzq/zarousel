@@ -17,8 +17,6 @@ export default class Dots extends (PureComponent || Component) {
 
   getStyleDot = (index) => {
     const { indexActive, colorDot } = this.props;
-    console.log('indexActive: ', indexActive);
-    console.log('index: ', index);
     return {
       width: 10,
       height: 10,

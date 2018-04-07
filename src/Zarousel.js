@@ -3,8 +3,6 @@ import PropTypes from 'prop-types';
 import cx from 'classnames';
 import Dots from './Dots';
 
-
-// set style of target element.
 function setStyle(target, styles) {
   const { style } = target;
   Object.keys(styles).forEach(attri => {
@@ -15,12 +13,14 @@ function setStyle(target, styles) {
 export default class Zarousel extends (PureComponent || Component) {
   static propTypes = {
     autoPlay: PropTypes.bool,
-    colorDot: PropTypes.string
+    colorDot: PropTypes.string,
+    transitionDuration: PropTypes.number
   };
 
   static defaultProps = {
     autoPlay: false,
-    colorDot: '#333'
+    colorDot: '#333',
+    transitionDuration: 300
   };
 
   state = {
@@ -28,7 +28,6 @@ export default class Zarousel extends (PureComponent || Component) {
   };
 
   componentDidMount() {
-    const { children } = this.props;
     this.init();
   }
 
@@ -42,27 +41,86 @@ export default class Zarousel extends (PureComponent || Component) {
         width: `${100 / len}%`
       });
     }
+    setStyle(this.zarouselList, {
+      marginLeft: `-${this.zarouselContainerWidth}px`
+    });
   }
 
   handleDotClick = (index) => () => {
-    console.log('index: ', index);
-    const realDuration = 300;
-    const translateDistance = -(this.zarouselContainerWidth * index);
     this.setState({
       indexActive: index
     });
-    setStyle(this.zarouselList, {
-      transform: `translateX(${translateDistance}px)`,
-      'transitionDuration': `${realDuration}ms`
-    });
+    this.swipeTo(index);
   };
 
-  calcTranslateDistance = (index, preIndex) => {
-
+  calcRealIndex = (index) => {
+    const { children } = this.props;
+    const len = children.length;
+    let realIndex = index;
+    if (index < 0) {
+      realIndex =  (len - 1);
+    } else if (index > (len -1)) {
+      realIndex =  0;
+    }
+    return realIndex;
   };
 
-  switchSlide() {
-  }
+  goNext = () => {
+    const { indexActive } = this.state;
+    this.swipeTo(indexActive + 1);
+  };
+
+  goPrev = () => {
+    const { indexActive } = this.state;
+    this.swipeTo(indexActive - 1);
+  };
+
+  resetPosition = (index) => {
+    const { transitionDuration, children } = this.props;
+    const len = children.length;
+    let translateDistance = index < 0 ? ((len - 1) * this.zarouselContainerWidth) : 0;
+    console.log('translateDistance: ', translateDistance);
+    setTimeout(() => {
+      setStyle(this.zarouselList, {
+        transform: `translateX(-${translateDistance}px)`,
+        'transitionDuration': `0ms`
+      });
+    }, transitionDuration)
+  };
+
+  swipeTo = (index) => {
+    console.log('index within swipe to: ', index);
+    const {
+      children,
+      transitionDuration
+    } = this.props;
+    const len = children.length;
+    let translateDistance;
+    if (index < 0 || index > (len - 1)) {
+      // 复制的元素的情况
+      this.setState({
+        indexActive: this.calcRealIndex(index)
+      }, () => {
+        translateDistance = -(this.zarouselContainerWidth * index);
+        setStyle(this.zarouselList, {
+          transform: `translateX(${translateDistance}px)`,
+          'transitionDuration': `${transitionDuration}ms`
+        });
+        this.resetPosition(index);
+      });
+    } else {
+      // 正常情况下的切换
+      this.setState({
+        indexActive: this.calcRealIndex(index)
+      }, () => {
+        translateDistance = -(this.zarouselContainerWidth * index);
+        setStyle(this.zarouselList, {
+          transform: `translateX(${translateDistance}px)`,
+          'transitionDuration': `${transitionDuration}ms`
+        });
+      });
+    }
+  };
 
   getZarouselContainer = (zarousel) => {
     this.zarouselContainer = zarousel;
@@ -119,6 +177,14 @@ export default class Zarousel extends (PureComponent || Component) {
           className="zarousel-list">
           {this.createChildren(children)}
         </div>
+        <div
+          className="arrow--next"
+          onClick={this.goNext}
+        >next</div>
+        <div
+          className="arrow--prev"
+          onClick={this.goPrev}
+        >prev</div>
         <Dots
           items={children}
           indexActive={indexActive}
