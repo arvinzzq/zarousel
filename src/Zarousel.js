@@ -79,33 +79,31 @@ export default class Zarousel extends (PureComponent || Component) {
     const { transitionDuration, children } = this.props;
     const len = children.length;
     let translateDistance = index < 0 ? ((len - 1) * this.zarouselContainerWidth) : 0;
-    console.log('translateDistance: ', translateDistance);
     setTimeout(() => {
       setStyle(this.zarouselList, {
         transform: `translateX(-${translateDistance}px)`,
         'transitionDuration': `0ms`
       });
+      this.isSwiping = false;
     }, transitionDuration)
   };
 
   swipeTo = (index) => {
-    console.log('index within swipe to: ', index);
     const {
       children,
       transitionDuration
     } = this.props;
     const len = children.length;
-    let translateDistance;
+    if (this.isSwiping) {
+      return;
+    }
+    this.isSwiping = true;
     if (index < 0 || index > (len - 1)) {
       // 复制的元素的情况
       this.setState({
         indexActive: this.calcRealIndex(index)
       }, () => {
-        translateDistance = -(this.zarouselContainerWidth * index);
-        setStyle(this.zarouselList, {
-          transform: `translateX(${translateDistance}px)`,
-          'transitionDuration': `${transitionDuration}ms`
-        });
+        this.translate(index);
         this.resetPosition(index);
       });
     } else {
@@ -113,13 +111,21 @@ export default class Zarousel extends (PureComponent || Component) {
       this.setState({
         indexActive: this.calcRealIndex(index)
       }, () => {
-        translateDistance = -(this.zarouselContainerWidth * index);
-        setStyle(this.zarouselList, {
-          transform: `translateX(${translateDistance}px)`,
-          'transitionDuration': `${transitionDuration}ms`
-        });
+        this.translate(index);
+        setTimeout(() => {
+          this.isSwiping = false;
+        }, transitionDuration);
       });
     }
+  };
+
+  translate = (index) => {
+    const { transitionDuration } = this.props;
+    const translateDistance = -(this.zarouselContainerWidth * index);
+    setStyle(this.zarouselList, {
+      transform: `translateX(${translateDistance}px)`,
+      'transitionDuration': `${transitionDuration}ms`
+    });
   };
 
   getZarouselContainer = (zarousel) => {

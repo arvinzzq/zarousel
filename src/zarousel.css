@@ -39,19 +39,19 @@
 .arrow--next {
   display: inline-block;
   position: absolute;
-  bottom: 30px;
+  top: 50%;
   right: 0px;
   width: 30px;
   height: 20px;
-  border: 1px solid #0e0;
+  border: 1px solid #00e;
 }
 
 .arrow--prev {
   display: inline-block;
   position: absolute;
-  bottom: 30px;
+  top: 50%;
   left: 0px;
   width: 30px;
   height: 20px;
-  border: 1px solid #0e0;
+  border: 1px solid #00e;
 }
