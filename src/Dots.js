@@ -8,11 +8,23 @@ export default class Dots extends (PureComponent || Component) {
     items: PropTypes.array.isRequired,
     indexActive: PropTypes.number.isRequired,
     handleDotClick: PropTypes.func.isRequired,
-    colorDots: PropTypes.string
+    colorDot: PropTypes.string
   };
 
   static defaultProps = {
     colorDots: '#333'
+  };
+
+  getStyleDot = (index) => {
+    const { indexActive, colorDot } = this.props;
+    console.log('indexActive: ', indexActive);
+    console.log('index: ', index);
+    return {
+      width: 10,
+      height: 10,
+      marginLeft: 5,
+      backgroundColor: (index === indexActive) ? colorDot : '#e5e5e5'
+    };
   };
 
   render() {
@@ -28,9 +40,10 @@ export default class Dots extends (PureComponent || Component) {
         {items.map((item, index) => (
           <li
             className={cx('zarousel-dot', {
-              'dot--active': (index === indexActive)
+              'zarousel-dot--active': (index === indexActive)
             })}
             key={index}
+            style={this.getStyleDot(index)}
             onClick={handleDotClick(index)}
           />
         ))}

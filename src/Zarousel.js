@@ -13,12 +13,18 @@ function setStyle(target, styles) {
 }
 
 export default class Zarousel extends (PureComponent || Component) {
-  static propTypes = {};
+  static propTypes = {
+    autoPlay: PropTypes.bool,
+    colorDot: PropTypes.string
+  };
 
-  static defaultProps = {};
+  static defaultProps = {
+    autoPlay: false,
+    colorDot: '#333'
+  };
 
   state = {
-    countSlide: 4
+    indexActive: 0
   };
 
   componentDidMount() {
@@ -42,7 +48,9 @@ export default class Zarousel extends (PureComponent || Component) {
     console.log('index: ', index);
     const realDuration = 300;
     const translateDistance = -(this.zarouselContainerWidth * index);
-
+    this.setState({
+      indexActive: index
+    });
     setStyle(this.zarouselList, {
       transform: `translateX(${translateDistance}px)`,
       'transitionDuration': `${realDuration}ms`
@@ -95,7 +103,12 @@ export default class Zarousel extends (PureComponent || Component) {
   };
 
   render() {
-    const { children, className } = this.props;
+    const {
+      children,
+      className,
+      colorDot
+    } = this.props;
+    const { indexActive } = this.state;
     return (
       <div
         ref={this.getZarouselContainer}
@@ -108,7 +121,8 @@ export default class Zarousel extends (PureComponent || Component) {
         </div>
         <Dots
           items={children}
-          indexActive={0}
+          indexActive={indexActive}
+          colorDot={colorDot}
           handleDotClick={this.handleDotClick}
         />
       </div>

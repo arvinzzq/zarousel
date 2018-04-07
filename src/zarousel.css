@@ -3,7 +3,6 @@
   position: relative;
 }
 .zarousel-list {
-  border: 1px solid #0e0;
   height: 100%;
 }
 
@@ -25,7 +24,6 @@
 
 .zarousel-dot {
   display: inline-block;
-  border: 1px solid #e00;
   cursor: pointer;
   width: 10px;
   height: 10px;
