@@ -13,8 +13,26 @@
   clear: both;
 }
 
+.zarousel-dot-list {
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  padding-left: 0px;
+  list-style-type: none;
+  font-size: 0px;
+}
+
 .zarousel-dot {
+  display: inline-block;
   border: 1px solid #e00;
-  width: 50px;
-  height: 20px;
+  cursor: pointer;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  margin-left: 5px;
+}
+
+.zarousel-dot:first-child {
+  margin-left: 0px;
 }

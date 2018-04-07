@@ -1,6 +1,7 @@
 import React, { Component, PureComponent, Children, cloneElement } from 'react';
 import PropTypes from 'prop-types';
 import cx from 'classnames';
+import Dots from './Dots';
 
 
 // set style of target element.
@@ -22,8 +23,6 @@ export default class Zarousel extends (PureComponent || Component) {
 
   componentDidMount() {
     const { children } = this.props;
-    console.log('children: ', children);
-    console.log('children of list: ', this.zarouselList.children);
     this.init();
   }
 
@@ -41,9 +40,9 @@ export default class Zarousel extends (PureComponent || Component) {
 
   handleDotClick = (index) => () => {
     console.log('index: ', index);
-    console.log('next is clicked ~');
     const realDuration = 300;
-    const translateDistance = -200 * index;
+    const translateDistance = -(this.zarouselContainerWidth * index);
+
     setStyle(this.zarouselList, {
       transform: `translateX(${translateDistance}px)`,
       'transitionDuration': `${realDuration}ms`
@@ -107,30 +106,11 @@ export default class Zarousel extends (PureComponent || Component) {
           className="zarousel-list">
           {this.createChildren(children)}
         </div>
-        <div
-          className="zarousel-dot"
-          onClick={this.handleDotClick(1)}
-        >
-          next1
-        </div>
-        <div
-          className="zarousel-dot"
-          onClick={this.handleDotClick(2)}
-        >
-          next2
-        </div>
-        <div
-          className="zarousel-dot"
-          onClick={this.handleDotClick(3)}
-        >
-          next3
-        </div>
-        <div
-          className="zarousel-dot"
-          onClick={this.handleDotClick(4)}
-        >
-          next4
-        </div>
+        <Dots
+          items={children}
+          indexActive={0}
+          handleDotClick={this.handleDotClick}
+        />
       </div>
     );
   }
