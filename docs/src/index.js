@@ -14,8 +14,8 @@ class App extends React.Component {
     return (
       <Zarousel
         className="container"
-        autoPlay={true}
-        showArrow={true}
+        autoPlay
+        showArrow
       >
         <div className="slide">1</div>
         <div className="slide">2</div>

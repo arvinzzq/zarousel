@@ -9,4 +9,5 @@ yarn.lock
 .editorconfig
 lock
 docs
+.travis.yml
 ./node_modules

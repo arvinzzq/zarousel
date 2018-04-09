@@ -14,21 +14,26 @@ export default class Zarousel extends (PureComponent || Component) {
   static propTypes = {
     autoPlay: PropTypes.bool,
     autoPlayInterval: PropTypes.number,
-    colorDot: PropTypes.string,
     transitionDuration: PropTypes.number,
     showArrow: PropTypes.bool,
-    sizeArrow: PropTypes.object
+    sizeArrow: PropTypes.object,
+    colorDot: PropTypes.string,
+    sizeDot: PropTypes.object
   };
 
   static defaultProps = {
     autoPlay: false,
-    colorDot: '#333',
-    transitionDuration: 300,
     autoPlayInterval: 3000,
+    transitionDuration: 300,
     showArrow: false,
     sizeArrow: {
       width: 30,
       height: 30
+    },
+    colorDot: '#333',
+    sizeDot: {
+      width: 10,
+      height: 10
     }
   };
 
@@ -224,8 +229,9 @@ export default class Zarousel extends (PureComponent || Component) {
     const {
       children,
       className,
+      showArrow,
       colorDot,
-      showArrow
+      sizeDot
     } = this.props;
     const { indexActive } = this.state;
     return (
@@ -257,6 +263,7 @@ export default class Zarousel extends (PureComponent || Component) {
           items={children}
           indexActive={indexActive}
           colorDot={colorDot}
+          sizeDot={sizeDot}
           handleDotClick={this.handleDotClick}
         />
       </div>

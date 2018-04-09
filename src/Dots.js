@@ -1,24 +1,7 @@
 import React, { PureComponent, Component } from 'react';
-import PropTypes from 'prop-types';
 import cx from 'classnames';
 
 export default class Dots extends (PureComponent || Component) {
-  static propTypes = {
-    items: PropTypes.array.isRequired,
-    indexActive: PropTypes.number.isRequired,
-    handleDotClick: PropTypes.func.isRequired,
-    colorDot: PropTypes.string,
-    sizeDot: PropTypes.object
-  };
-
-  static defaultProps = {
-    colorDot: '#333',
-    sizeDot: {
-      width: 10,
-      height: 10
-    }
-  };
-
   getStyleDot = (index) => {
     const { indexActive, colorDot, sizeDot } = this.props;
     return {
