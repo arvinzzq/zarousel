@@ -1,6 +1,6 @@
 {
   "name": "zarousel",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "A react component of carousel.",
   "main": "lib/Zarousel.js",
   "scripts": {
