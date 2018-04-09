@@ -1,0 +1,60 @@
+.zarousel-container {
+  overflow: hidden;
+  position: relative;
+}
+.zarousel-list {
+  height: 100%;
+}
+
+.zarousel-list:after {
+  content: '';
+  display: block;
+  clear: both;
+}
+
+.zarousel-dot-list {
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  padding-left: 0px;
+  list-style-type: none;
+  font-size: 0px;
+}
+
+.zarousel-dot {
+  display: inline-block;
+  cursor: pointer;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  margin-left: 5px;
+}
+
+.zarousel-dot:first-child {
+  margin-left: 0px;
+}
+
+.zarousel-icon--arrow:after {
+  cursor: pointer;
+  content: '';
+  display: inline-block;
+  border: 2px solid #ccc;
+  width: 30%;
+  height: 30%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+}
+
+.zarousel-icon--arrow.arrow--next:after {
+  border-bottom: none;
+  border-left: none;
+  transform: translate(-60%, -50%) rotate(45deg);
+}
+
+.zarousel-icon--arrow.arrow--prev:after {
+  border-top: none;
+  border-right: none;
+  transform: translate(-40%, -50%) rotate(45deg);
+}
