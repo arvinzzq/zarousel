@@ -1,4 +1,4 @@
-## Zarousel
+# Zarousel [![Build Status](https://travis-ci.org/zz1211/zarousel.svg?branch=master)](https://travis-ci.org/zz1211/zarousel)
 A react component of carousel
 
 ## Installation
