@@ -15,6 +15,7 @@ class App extends React.Component {
       <Zarousel
         className="container"
         autoPlay={true}
+        showArrow={true}
       >
         <div className="slide">1</div>
         <div className="slide">2</div>

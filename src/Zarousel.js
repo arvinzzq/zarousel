@@ -15,14 +15,21 @@ export default class Zarousel extends (PureComponent || Component) {
     autoPlay: PropTypes.bool,
     autoPlayInterval: PropTypes.number,
     colorDot: PropTypes.string,
-    transitionDuration: PropTypes.number
+    transitionDuration: PropTypes.number,
+    showArrow: PropTypes.bool,
+    sizeArrow: PropTypes.object
   };
 
   static defaultProps = {
     autoPlay: false,
     colorDot: '#333',
     transitionDuration: 300,
-    autoPlayInterval: 3000
+    autoPlayInterval: 3000,
+    showArrow: false,
+    sizeArrow: {
+      width: 30,
+      height: 30
+    }
   };
 
   state = {
@@ -36,17 +43,10 @@ export default class Zarousel extends (PureComponent || Component) {
   init() {
     const { autoPlay } = this.props;
     const childrenList = this.zarouselList.children;
-    const len = childrenList.length;
     this.getZarouselContainerWidth();
-    this.setZarouselListWidth(len);
-    for(let i = 0; i < len; i++) {
-      setStyle(childrenList[i], {
-        width: `${100 / len}%`
-      });
-    }
-    setStyle(this.zarouselList, {
-      marginLeft: `-${this.zarouselContainerWidth}px`
-    });
+    this.setZarouselListWidth(childrenList.length);
+    this.setChildrenWidth(childrenList);
+    this.setInitPosition();
     autoPlay && this.startAutoPlay();
   }
 
@@ -81,9 +81,9 @@ export default class Zarousel extends (PureComponent || Component) {
     const len = children.length;
     let realIndex = index;
     if (index < 0) {
-      realIndex =  (len - 1);
-    } else if (index > (len -1)) {
-      realIndex =  0;
+      realIndex = (len - 1);
+    } else if (index > (len - 1)) {
+      realIndex = 0;
     }
     return realIndex;
   };
@@ -167,6 +167,22 @@ export default class Zarousel extends (PureComponent || Component) {
       width: `${this.zarouselContainerWidth * countElements}px`
     })
   };
+
+  setChildrenWidth = (childrenList) => {
+    const len = childrenList.length;
+    for (let i = 0; i < len; i++) {
+      setStyle(childrenList[i], {
+        width: `${100 / len}%`
+      });
+    }
+  };
+
+  setInitPosition = () => {
+    setStyle(this.zarouselList, {
+      marginLeft: `-${this.zarouselContainerWidth}px`
+    });
+  };
+
   createChildren = (children) => {
     const len = Children.count(children);
     if (len <= 1) {
@@ -189,11 +205,27 @@ export default class Zarousel extends (PureComponent || Component) {
       }));
   };
 
+  getStyleArrow = (type) => {
+    const { sizeArrow } = this.props
+    return {
+      display: 'inline-block',
+      position: 'absolute',
+      top: '50%',
+      transform: 'translateY(-50%)',
+      width: sizeArrow.width,
+      height: sizeArrow.height,
+      borderRadius: '50%',
+      backgroundColor: '#eee',
+      [type]: 10
+    };
+  };
+
   render() {
     const {
       children,
       className,
-      colorDot
+      colorDot,
+      showArrow
     } = this.props;
     const { indexActive } = this.state;
     return (
@@ -208,14 +240,19 @@ export default class Zarousel extends (PureComponent || Component) {
           className="zarousel-list">
           {this.createChildren(children)}
         </div>
-        <div
-          className="arrow--next"
-          onClick={this.goNext}
-        >next</div>
-        <div
-          className="arrow--prev"
-          onClick={this.goPrev}
-        >prev</div>
+        {showArrow && (
+          <div
+            className="arrow--next"
+            style={this.getStyleArrow('right')}
+            onClick={this.goNext}
+          ></div>)}
+        {showArrow && (
+          <div
+            className="arrow--prev"
+            style={this.getStyleArrow('left')}
+            onClick={this.goPrev}
+          ></div>
+        )}
         <Dots
           items={children}
           indexActive={indexActive}

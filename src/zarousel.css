@@ -1,10 +1,9 @@
 .zarousel-container {
-  /*overflow: hidden;*/
+  overflow: hidden;
   position: relative;
 }
 .zarousel-list {
   height: 100%;
-  border: 1px solid #0e0;
 }
 
 .zarousel-list:after {
@@ -36,22 +35,32 @@
   margin-left: 0px;
 }
 
-.arrow--next {
+.arrow--next:after {
+  cursor: pointer;
+  content: '';
   display: inline-block;
+  border: 2px solid #ccc;
+  border-bottom: none;
+  border-left: none;
+  width: 30%;
+  height: 30%;
   position: absolute;
   top: 50%;
-  right: 0px;
-  width: 30px;
-  height: 20px;
-  border: 1px solid #00e;
+  left: 50%;
+  transform: translate(-60%, -50%) rotate(45deg);
 }
 
-.arrow--prev {
+.arrow--prev:after {
+  cursor: pointer;
+  content: '';
   display: inline-block;
+  border: 2px solid #ccc;
+  border-top: none;
+  border-right: none;
+  width: 30%;
+  height: 30%;
   position: absolute;
   top: 50%;
-  left: 0px;
-  width: 30px;
-  height: 20px;
-  border: 1px solid #00e;
+  left: 50%;
+  transform: translate(-40%, -50%) rotate(45deg);
 }
