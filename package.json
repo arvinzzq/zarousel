@@ -1,6 +1,6 @@
 {
   "name": "zarousel",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A react component of carousel.",
   "main": "index.js",
   "scripts": {
