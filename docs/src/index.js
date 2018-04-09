@@ -5,11 +5,6 @@ import '../../src/zarousel.css';
 import './index.css';
 
 class App extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {};
-  }
-
   render() {
     return (
       <Zarousel

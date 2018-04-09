@@ -10,8 +10,11 @@ function setStyle(target, styles) {
   })
 }
 
+const noop = () => {};
+
 export default class Zarousel extends (PureComponent || Component) {
   static propTypes = {
+    onChange: PropTypes.func,
     autoPlay: PropTypes.bool,
     autoPlayInterval: PropTypes.number,
     transitionDuration: PropTypes.number,
@@ -22,6 +25,7 @@ export default class Zarousel extends (PureComponent || Component) {
   };
 
   static defaultProps = {
+    onChange: noop,
     autoPlay: false,
     autoPlayInterval: 3000,
     transitionDuration: 300,
@@ -118,13 +122,16 @@ export default class Zarousel extends (PureComponent || Component) {
 
   swipeTo = (index) => {
     const {
+      onChange,
       children,
       transitionDuration
     } = this.props;
+    const { indexActive } = this.state;
     const len = children.length;
     if (this.isSwiping) {
       return;
     }
+    onChange(indexActive, this.calcRealIndex(index));
     this.isSwiping = true;
     if (index < 0 || index > (len - 1)) {
       // 复制的元素的情况

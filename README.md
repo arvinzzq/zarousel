@@ -16,7 +16,7 @@ npm i zarousel --save
 
 ```javascript
 import React from 'react';
-import Zarousel from 'Zarousel';
+import Zarousel from 'zarousel';
 import 'zarousel/lib/zarousel.css';
 
 class App extends React.Component {
@@ -54,3 +54,7 @@ showArrow|boolean|false|whether show icon of arrow to control play of carousel
 sizeArrow|object|{width: 30, height: 30}|size of icon of arrow
 colorDot|string|'#333'|color of active dot
 sizeDot|object|{width: 10, height: 10}|size of dot
+swipeTo|function(index)|--|control zarousel by index of slide that is 0 based
+goPrev|function|--|swipe to previous slide of zarousel
+goNext|function|--|swipe to next slide of zarousel
+onChange|function(previousIndex, currentIndex)|noop|callback when zarousel is changed
