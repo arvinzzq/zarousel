@@ -21,6 +21,8 @@ class App extends React.Component {
         <div className="slide">2</div>
         <div className="slide">3</div>
         <div className="slide">4</div>
+        <div className="slide">5</div>
+        <div className="slide">6</div>
       </Zarousel>
     );
   }

@@ -242,13 +242,13 @@ export default class Zarousel extends (PureComponent || Component) {
         </div>
         {showArrow && (
           <div
-            className="arrow--next"
+            className="zarousel-icon--arrow arrow--next"
             style={this.getStyleArrow('right')}
             onClick={this.goNext}
           ></div>)}
         {showArrow && (
           <div
-            className="arrow--prev"
+            className="zarousel-icon--arrow arrow--prev"
             style={this.getStyleArrow('left')}
             onClick={this.goPrev}
           ></div>

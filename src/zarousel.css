@@ -35,32 +35,26 @@
   margin-left: 0px;
 }
 
-.arrow--next:after {
+.zarousel-icon--arrow:after {
   cursor: pointer;
   content: '';
   display: inline-block;
   border: 2px solid #ccc;
-  border-bottom: none;
-  border-left: none;
   width: 30%;
   height: 30%;
   position: absolute;
   top: 50%;
   left: 50%;
+}
+
+.zarousel-icon--arrow.arrow--next:after {
+  border-bottom: none;
+  border-left: none;
   transform: translate(-60%, -50%) rotate(45deg);
 }
 
-.arrow--prev:after {
-  cursor: pointer;
-  content: '';
-  display: inline-block;
-  border: 2px solid #ccc;
+.zarousel-icon--arrow.arrow--prev:after {
   border-top: none;
   border-right: none;
-  width: 30%;
-  height: 30%;
-  position: absolute;
-  top: 50%;
-  left: 50%;
   transform: translate(-40%, -50%) rotate(45deg);
 }
