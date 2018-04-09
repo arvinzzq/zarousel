@@ -1,4 +1,9 @@
-# Zarousel [![Build Status](https://travis-ci.org/zz1211/zarousel.svg?branch=master)](https://travis-ci.org/zz1211/zarousel)
+# Zarousel
+
+[![NPM](https://nodei.co/npm/zarousel.png)](https://nodei.co/npm/zarousel/)
+
+[![Build Status](https://travis-ci.org/zz1211/zarousel.svg?branch=master)](https://travis-ci.org/zz1211/zarousel)
+
 A react component of carousel
 
 ## Installation
