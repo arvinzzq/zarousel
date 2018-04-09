@@ -2,11 +2,11 @@
   "name": "zarousel",
   "version": "1.0.1",
   "description": "A react component of carousel.",
-  "main": "index.js",
+  "main": "lib/Zarousel.js",
   "scripts": {
     "dev": "node_modules/.bin/webpack-dev-server --mode development",
     "build": "webpack -p --hide-modules",
-    "lib": "node_modules/.bin/babel src/Zarousel.js --out-file lib/Zarousel.js && cp src/zarousel.css lib",
+    "lib": "node_modules/.bin/babel src -d lib && cp src/zarousel.css lib",
     "test": "npm run lib",
     "release": "npm run build && npm run lib && npm publish"
   },
