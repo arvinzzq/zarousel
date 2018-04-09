@@ -11,7 +11,7 @@ npm i zarousel --save
 
 ```javascript
 import React from 'react';
-import Zarousel from 'zarousel';
+import Zarousel from 'Zarousel';
 import 'zarousel/lib/zarousel.css';
 
 class App extends React.Component {

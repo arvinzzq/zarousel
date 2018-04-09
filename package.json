@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "node_modules/.bin/webpack-dev-server --mode development",
     "build": "webpack -p --hide-modules",
-    "lib": "node_modules/.bin/babel src/zarousel.js --out-file lib/zarousel.js && cp src/zarousel.css lib",
+    "lib": "node_modules/.bin/babel src/Zarousel.js --out-file lib/Zarousel.js && cp src/zarousel.css lib",
     "test": "npm run lib",
     "release": "npm run build && npm run lib && npm publish"
   },

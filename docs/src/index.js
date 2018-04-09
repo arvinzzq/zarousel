@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Zarousel from '../../src/zarousel.js';
+import Zarousel from '../../src/Zarousel';
 import '../../src/zarousel.css';
 import './index.css';
 
