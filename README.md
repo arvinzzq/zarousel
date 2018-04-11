@@ -3,6 +3,7 @@
 [![NPM](https://nodei.co/npm/zarousel.png)](https://nodei.co/npm/zarousel/)
 
 [![Build Status](https://travis-ci.org/zz1211/zarousel.svg?branch=master)](https://travis-ci.org/zz1211/zarousel)
+[![NPM downloads](http://img.shields.io/npm/dm/zarousel.svg?style=flat-square)](https://npmjs.org/package/zarousel)
 
 A react component of carousel
 
